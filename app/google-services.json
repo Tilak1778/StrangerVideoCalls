@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "1045229605296",
+    "project_id": "strangervideocall-8c050",
+    "storage_bucket": "strangervideocall-8c050.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1045229605296:android:ac41a2c36042bb417d0675",
+        "android_client_info": {
+          "package_name": "com.richMaMa.randomcalls"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1045229605296-6mcpdpbq4ult7cbsug9opeb9cf4jhdq3.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.richMaMa.randomcalls",
+            "certificate_hash": "2a7ba33d81d2306cd935b42024366ccb936c3e6d"
+          }
+        },
+        {
+          "client_id": "1045229605296-l9a259epro2qh7fil7bavqjdrmsqqunv.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDg997nfDXMt8MYtdv8c9JiA8BhjVxUss8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1045229605296-l9a259epro2qh7fil7bavqjdrmsqqunv.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

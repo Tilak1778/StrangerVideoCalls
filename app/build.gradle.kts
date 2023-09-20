@@ -47,6 +47,7 @@ dependencies {
     implementation("com.google.android.gms:play-services-auth:20.7.0")
     implementation("com.github.bumptech.glide:glide:4.16.0")
     implementation("com.google.android.gms:play-services-ads:22.4.0")
+    implementation("com.google.firebase:firebase-auth-ktx:22.1.2")
 
 
     testImplementation("junit:junit:4.13.2")

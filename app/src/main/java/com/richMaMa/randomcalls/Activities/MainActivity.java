@@ -75,7 +75,7 @@ public class MainActivity extends AppCompatActivity {
                 if (isPermissionGranted()) {
                     if (coins >= 5) {
                         coins = coins - 5;
-                        mDatabase.getReference().child("profile")
+                        mDatabase.getReference().child("profiles")
                                 .child(currentUser.getUid())
                                 .child("coins")
                                 .setValue(coins);

@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">Stranger Calls</string>
+    <string name="googleSignInVlientId">1045229605296-l9a259epro2qh7fil7bavqjdrmsqqunv.apps.googleusercontent.com</string>
 </resources>

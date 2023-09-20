@@ -1,4 +1,11 @@
 <resources>
     <string name="app_name">Stranger Calls</string>
     <string name="googleSignInVlientId">1045229605296-l9a259epro2qh7fil7bavqjdrmsqqunv.apps.googleusercontent.com</string>
+    <string name="child_profiles">profiles</string>
+    <string name="child_users">users</string>
+    <string name="child_coins">coins</string>
+    <string name="child_connId">connId</string>
+    <string name="child_city">city</string>
+    <string name="child_name">name</string>
+
 </resources>

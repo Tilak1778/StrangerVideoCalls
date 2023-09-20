@@ -86,7 +86,7 @@ public class LoginActivity extends AppCompatActivity {
                             User firebaseUser = new User(user.getUid(), user.getDisplayName(), user.getPhotoUrl().toString(), "Unknown", 50);
                             Log.e("tilak","authWithGoogle  onComplete");
                             mDatabase.getReference()
-                                    .child("profiles")
+                                    .child(getString(R.string.child_profiles))
                                     .child(user.getUid())
                                     .setValue(firebaseUser).addOnCompleteListener(new OnCompleteListener<Void>() {
                                         @Override

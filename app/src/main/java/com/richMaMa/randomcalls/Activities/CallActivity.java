@@ -49,7 +49,7 @@ public class CallActivity extends AppCompatActivity {
         setContentView(binding.getRoot());
 
         mAuth = FirebaseAuth.getInstance();
-        firebaseRef = FirebaseDatabase.getInstance().getReference().child("users");
+        firebaseRef = FirebaseDatabase.getInstance().getReference().child(getString(R.string.child_users));
         username = getIntent().getStringExtra("username");
         String incoming = getIntent().getStringExtra("incoming");
         createdBy = getIntent().getStringExtra("createdBy");
@@ -133,7 +133,7 @@ public class CallActivity extends AppCompatActivity {
         uniqueId = getUniqueId();
 
         callJavaScriptFunc("javascript:init(\"" + uniqueId + "\")");
-        //Log.e(TAG, "initializePeer");
+        Log.e(TAG, "initializePeer");
         if (createdBy.equalsIgnoreCase(username)) {
             if(pageExit)
                 return;
@@ -143,7 +143,7 @@ public class CallActivity extends AppCompatActivity {
             binding.controls.setVisibility(View.VISIBLE);
 
             FirebaseDatabase.getInstance().getReference()
-                    .child("profiles")
+                    .child(getString(R.string.child_profiles))
                     .child(matchedUsername)
                     .addListenerForSingleValueEvent(new ValueEventListener() {
                         @Override
@@ -169,7 +169,7 @@ public class CallActivity extends AppCompatActivity {
                 public void run() {
                     matchedUsername = createdBy;
                     FirebaseDatabase.getInstance().getReference()
-                            .child("profiles")
+                            .child(getString(R.string.child_profiles))
                             .child(matchedUsername)
                             .addListenerForSingleValueEvent(new ValueEventListener() {
                                 @Override
@@ -188,9 +188,9 @@ public class CallActivity extends AppCompatActivity {
                             });
                     //Log.e(TAG, "matched username = " + matchedUsername);
                     FirebaseDatabase.getInstance().getReference()
-                            .child("users")
+                            .child(getString(R.string.child_users))
                             .child(matchedUsername)
-                            .child("connId")
+                            .child(getString(R.string.child_connId))
                             .addListenerForSingleValueEvent(new ValueEventListener() {
                                 @Override
                                 public void onDataChange(@NonNull DataSnapshot snapshot) {
@@ -216,7 +216,7 @@ public class CallActivity extends AppCompatActivity {
     }
 
     void sendCallRequest() {
-        //Log.e(TAG, "sendCallRequest");
+        Log.e(TAG, "sendCallRequest");
         if (!isePeerConnected) {
             Toast.makeText(CallActivity.this, "You are not Connected, Please check your internet", Toast.LENGTH_SHORT).show();
             return;
@@ -235,7 +235,7 @@ public class CallActivity extends AppCompatActivity {
                 binding.loadingAnimationGroup.setVisibility(View.GONE);
                 binding.controls.setVisibility(View.VISIBLE);
                 String connId = snapshot.getValue(String.class);
-                //Log.e(TAG, "javascript:startCall");
+                Log.e(TAG, "javascript:startCall");
                 callJavaScriptFunc("javascript:startCall(\"" + connId + "\")");
             }
 

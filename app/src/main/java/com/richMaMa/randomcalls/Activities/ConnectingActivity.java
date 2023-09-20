@@ -42,8 +42,8 @@ public class ConnectingActivity extends AppCompatActivity {
 
         String userame = mAuth.getUid();
 
-        mDatabase.getReference().child("users")
-                .orderByChild("status")
+        mDatabase.getReference().child(getString(R.string.child_users))
+                .orderByChild(getString(R.string.child_status))
                 .equalTo(0).limitToFirst(1)
                 .addListenerForSingleValueEvent(new ValueEventListener() {
                     @Override
@@ -55,19 +55,19 @@ public class ConnectingActivity extends AppCompatActivity {
                             Log.e(TAG, "room available");
                             for (DataSnapshot childSnap : snapshot.getChildren()) {
                                 mDatabase.getReference()
-                                        .child("users")
+                                        .child(getString(R.string.child_users))
                                         .child(childSnap.getKey())
-                                        .child("incoming")
+                                        .child(getString(R.string.child_incoming))
                                         .setValue(userame);
                                 mDatabase.getReference()
-                                        .child("users")
+                                        .child(getString(R.string.child_users))
                                         .child(childSnap.getKey())
-                                        .child("status")
+                                        .child(getString(R.string.child_status))
                                         .setValue(1);
                                 Intent intent = new Intent(ConnectingActivity.this, CallActivity.class);
-                                String incoming = childSnap.child("incoming").getValue(String.class);
-                                String createdBy = childSnap.child("createdBy").getValue(String.class);
-                                boolean isAvailable = childSnap.child("isAvailable").getValue(boolean.class);
+                                String incoming = childSnap.child(getString(R.string.child_incoming)).getValue(String.class);
+                                String createdBy = childSnap.child(getString(R.string.child_createdBy)).getValue(String.class);
+                                boolean isAvailable = childSnap.child(getString(R.string.child_isAvailable)).getValue(boolean.class);
                                 intent.putExtra("username", userame);
                                 intent.putExtra("incoming", incoming);
                                 intent.putExtra("createdBy", createdBy);
@@ -85,25 +85,25 @@ public class ConnectingActivity extends AppCompatActivity {
                             map.put("status", 0);
 
                             mDatabase.getReference()
-                                    .child("users")
+                                    .child(getString(R.string.child_users))
                                     .child(userame)
                                     .setValue(map).addOnSuccessListener(new OnSuccessListener<Void>() {
                                         @Override
                                         public void onSuccess(Void unused) {
                                             mDatabase.getReference()
-                                                    .child("users")
+                                                    .child(getString(R.string.child_users))
                                                     .child(userame).addValueEventListener(new ValueEventListener() {
                                                         @Override
                                                         public void onDataChange(@NonNull DataSnapshot snapshot) {
-                                                            if (snapshot.child("status").exists()) {
-                                                                if (snapshot.child("status").getValue(Integer.class) == 1) {
+                                                            if (snapshot.child(getString(R.string.child_status)).exists()) {
+                                                                if (snapshot.child(getString(R.string.child_status)).getValue(Integer.class) == 1) {
                                                                     if (isOkey)
                                                                         return;
                                                                     isOkey = true;
                                                                     Intent intent = new Intent(ConnectingActivity.this, CallActivity.class);
-                                                                    String incoming = snapshot.child("incoming").getValue(String.class);
-                                                                    String createdBy = snapshot.child("createdBy").getValue(String.class);
-                                                                    boolean isAvailable = snapshot.child("isAvailable").getValue(boolean.class);
+                                                                    String incoming = snapshot.child(getString(R.string.child_incoming)).getValue(String.class);
+                                                                    String createdBy = snapshot.child(getString(R.string.child_createdBy)).getValue(String.class);
+                                                                    boolean isAvailable = snapshot.child(getString(R.string.child_isAvailable)).getValue(boolean.class);
                                                                     intent.putExtra("username", userame);
                                                                     intent.putExtra("incoming", incoming);
                                                                     intent.putExtra("createdBy", createdBy);

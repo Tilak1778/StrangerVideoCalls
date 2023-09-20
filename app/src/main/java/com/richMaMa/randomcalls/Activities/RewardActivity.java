@@ -40,9 +40,9 @@ public class RewardActivity extends AppCompatActivity {
         currentUid = FirebaseAuth.getInstance().getUid();
         loadAd();
 
-        database.getReference().child("profiles")
+        database.getReference().child(getString(R.string.child_profiles))
                 .child(currentUid)
-                .child("coins")
+                .child(getString(R.string.child_coins))
                 .addValueEventListener(new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot snapshot) {
@@ -67,9 +67,9 @@ public class RewardActivity extends AppCompatActivity {
                             // Handle the reward.
                             loadAd();
                             coins = coins + 20;
-                            database.getReference().child("profiles")
+                            database.getReference().child(getString(R.string.child_profiles))
                                     .child(currentUid)
-                                    .child("coins")
+                                    .child(getString(R.string.child_coins))
                                     .setValue(coins);
                             binding.video1Icon.setImageResource(R.drawable.check);
                         }
@@ -91,9 +91,9 @@ public class RewardActivity extends AppCompatActivity {
                             // Handle the reward.
                             loadAd();
                             coins = coins + 30;
-                            database.getReference().child("profiles")
+                            database.getReference().child(getString(R.string.child_profiles))
                                     .child(currentUid)
-                                    .child("coins")
+                                    .child(getString(R.string.child_coins))
                                     .setValue(coins);
                             binding.video2Icon.setImageResource(R.drawable.check);
                         }
@@ -115,9 +115,9 @@ public class RewardActivity extends AppCompatActivity {
                             // Handle the reward.
                             loadAd();
                             coins = coins + 40;
-                            database.getReference().child("profiles")
+                            database.getReference().child(getString(R.string.child_profiles))
                                     .child(currentUid)
-                                    .child("coins")
+                                    .child(getString(R.string.child_coins))
                                     .setValue(coins);
                             binding.video3Icon.setImageResource(R.drawable.check);
                         }
@@ -139,9 +139,9 @@ public class RewardActivity extends AppCompatActivity {
                             // Handle the reward.
                             loadAd();
                             coins = coins + 50;
-                            database.getReference().child("profiles")
+                            database.getReference().child(getString(R.string.child_profiles))
                                     .child(currentUid)
-                                    .child("coins")
+                                    .child(getString(R.string.child_coins))
                                     .setValue(coins);
                             binding.video4Icon.setImageResource(R.drawable.check);
                         }
@@ -163,9 +163,9 @@ public class RewardActivity extends AppCompatActivity {
                             // Handle the reward.
                             loadAd();
                             coins = coins + 60;
-                            database.getReference().child("profiles")
+                            database.getReference().child(getString(R.string.child_profiles))
                                     .child(currentUid)
-                                    .child("coins")
+                                    .child(getString(R.string.child_coins))
                                     .setValue(coins);
                             binding.video5Icon.setImageResource(R.drawable.check);
                         }
@@ -180,7 +180,7 @@ public class RewardActivity extends AppCompatActivity {
 
     void loadAd() {
         AdRequest adRequest = new AdRequest.Builder().build();
-        RewardedAd.load(this, "ca-app-pub-3940256099942544/5224354917",
+        RewardedAd.load(this, getString(R.string.admob_id),
                 adRequest, new RewardedAdLoadCallback() {
                     @Override
                     public void onAdFailedToLoad(@NonNull LoadAdError loadAdError) {

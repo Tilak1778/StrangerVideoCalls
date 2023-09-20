@@ -113,7 +113,7 @@
         app:layout_constraintTop_toTopOf="@+id/lottieAnimationView" />
 
     <TextView
-        android:id="@+id/textView6"
+        android:id="@+id/users_online"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="24dp"
@@ -136,7 +136,7 @@
         android:textColor="@color/white"
         app:layout_constraintEnd_toEndOf="@+id/lottieAnimationView"
         app:layout_constraintStart_toStartOf="@+id/lottieAnimationView"
-        app:layout_constraintTop_toBottomOf="@+id/textView6" />
+        app:layout_constraintTop_toBottomOf="@+id/users_online" />
 
     <LinearLayout
         android:id="@+id/linearLayout4"

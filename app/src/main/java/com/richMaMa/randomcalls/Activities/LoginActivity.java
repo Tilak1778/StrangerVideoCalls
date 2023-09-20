@@ -75,6 +75,7 @@ public class LoginActivity extends AppCompatActivity {
 
     void authWithGoogle(String idToken) {
         AuthCredential credential = GoogleAuthProvider.getCredential(idToken, null);
+        Log.e("tilak","authWithGoogle ");
         mAuth.signInWithCredential(credential)
                 .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                     @Override
@@ -82,6 +83,7 @@ public class LoginActivity extends AppCompatActivity {
                         if (task.isSuccessful()) {
                             FirebaseUser user = mAuth.getCurrentUser();
                             User firebaseUser = new User(user.getUid(), user.getDisplayName(), user.getPhotoUrl().toString(), "Unknown", 50);
+                            Log.e("tilak","authWithGoogle  onComplete");
                             mDatabase.getReference()
                                     .child("profiles")
                                     .child(user.getUid())
@@ -101,6 +103,7 @@ public class LoginActivity extends AppCompatActivity {
 
 
                         } else {
+                            Log.e("tilak","authWithGoogle  Sign In Failed");
                             Log.e(TAG, task.getException().getLocalizedMessage());
                             Toast.makeText(getApplicationContext(), "Sign In Failed", Toast.LENGTH_SHORT).show();
                         }

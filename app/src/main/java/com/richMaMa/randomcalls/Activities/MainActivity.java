@@ -12,6 +12,9 @@ import android.view.View;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
+import com.google.android.gms.ads.MobileAds;
+import com.google.android.gms.ads.initialization.InitializationStatus;
+import com.google.android.gms.ads.initialization.OnInitializationCompleteListener;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -20,8 +23,6 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.richMaMa.randomcalls.databinding.ActivityMainBinding;
 import com.richMaMa.randomcalls.models.User;
-
-
 public class MainActivity extends AppCompatActivity {
 
     ActivityMainBinding binding;
@@ -37,6 +38,12 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         binding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
+
+        MobileAds.initialize(this, new OnInitializationCompleteListener() {
+            @Override
+            public void onInitializationComplete(InitializationStatus initializationStatus) {
+            }
+        });
 
         mAuth = FirebaseAuth.getInstance();
         mDatabase = FirebaseDatabase.getInstance();
@@ -67,6 +74,12 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 if (isPermissionGranted()) {
                     if (coins >= 5) {
+                        coins = coins - 5;
+                        mDatabase.getReference().child("profile")
+                                .child(currentUser.getUid())
+                                .child("coins")
+                                .setValue(coins);
+
                         Intent intent = new Intent(MainActivity.this, ConnectingActivity.class);
                         intent.putExtra("profile",user.getProfile());
                         startActivity(intent);
@@ -77,6 +90,13 @@ public class MainActivity extends AppCompatActivity {
                     askPermission();
                 }
 
+            }
+        });
+
+        binding.buttonWallet.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(MainActivity.this,RewardActivity.class ));
             }
         });
 

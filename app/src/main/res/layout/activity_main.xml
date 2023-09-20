@@ -50,7 +50,7 @@
             android:id="@+id/coins"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="You Have: 50"
+            android:text="You Have: 0"
             android:textColor="@color/white"
             android:textSize="10dp" />
 
@@ -80,7 +80,7 @@
         app:layout_constraintTop_toTopOf="@+id/linearLayout3">
 
         <ImageView
-            android:id="@+id/imageView4"
+            android:id="@+id/button_wallet"
             android:layout_width="16dp"
             android:layout_height="16dp"
             android:layout_weight="1"
@@ -118,7 +118,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="24dp"
         android:fontFamily="@font/roboto_bold"
-        android:text="100"
+        android:text="0"
         android:textColor="@color/white"
         android:textSize="34sp"
         app:layout_constraintEnd_toEndOf="@+id/lottieAnimationView"

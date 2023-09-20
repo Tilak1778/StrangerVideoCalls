@@ -22,7 +22,7 @@ import com.richMaMa.randomcalls.databinding.ActivityMainBinding;
 import java.util.HashMap;
 
 public class ConnectingActivity extends AppCompatActivity {
-    final String TAG = "CConnectingActivity";
+    final String TAG = "ConnectingActivity";
     ActivityConnectingBinding binding;
     FirebaseAuth mAuth;
     FirebaseDatabase mDatabase;
@@ -48,11 +48,12 @@ public class ConnectingActivity extends AppCompatActivity {
                 .addListenerForSingleValueEvent(new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot snapshot) {
-                        if (snapshot.getChildrenCount() > 1) {
+                        Log.e(TAG, "onDataChange child = " + snapshot.getChildrenCount());
+                        if (snapshot.getChildrenCount() > 0) {
                             //room available
                             isOkey = true;
-                            Log.e(TAG,"room available");
-                            for( DataSnapshot childSnap : snapshot.getChildren()){
+                            Log.e(TAG, "room available");
+                            for (DataSnapshot childSnap : snapshot.getChildren()) {
                                 mDatabase.getReference()
                                         .child("users")
                                         .child(childSnap.getKey())
@@ -67,14 +68,16 @@ public class ConnectingActivity extends AppCompatActivity {
                                 String incoming = childSnap.child("incoming").getValue(String.class);
                                 String createdBy = childSnap.child("createdBy").getValue(String.class);
                                 boolean isAvailable = childSnap.child("isAvailable").getValue(boolean.class);
-                                intent.putExtra("username",userame);
-                                intent.putExtra("incoming",incoming);
-                                intent.putExtra("createdBy",createdBy);
-                                intent.putExtra("isAvailable",isAvailable);
+                                intent.putExtra("username", userame);
+                                intent.putExtra("incoming", incoming);
+                                intent.putExtra("createdBy", createdBy);
+                                intent.putExtra("isAvailable", isAvailable);
                                 startActivity(intent);
+                                finish();
                             }
                         } else {
                             //room not available, create new room
+                            Log.e(TAG, "room not available");
                             HashMap<String, Object> map = new HashMap<>();
                             map.put("incoming", userame);
                             map.put("createdBy", userame);
@@ -92,8 +95,8 @@ public class ConnectingActivity extends AppCompatActivity {
                                                     .child(userame).addValueEventListener(new ValueEventListener() {
                                                         @Override
                                                         public void onDataChange(@NonNull DataSnapshot snapshot) {
-                                                            if(snapshot.child("status").exists()){
-                                                                if(snapshot.child("status").getValue(Integer.class)==1){
+                                                            if (snapshot.child("status").exists()) {
+                                                                if (snapshot.child("status").getValue(Integer.class) == 1) {
                                                                     if (isOkey)
                                                                         return;
                                                                     isOkey = true;
@@ -101,11 +104,12 @@ public class ConnectingActivity extends AppCompatActivity {
                                                                     String incoming = snapshot.child("incoming").getValue(String.class);
                                                                     String createdBy = snapshot.child("createdBy").getValue(String.class);
                                                                     boolean isAvailable = snapshot.child("isAvailable").getValue(boolean.class);
-                                                                    intent.putExtra("username",userame);
-                                                                    intent.putExtra("incoming",incoming);
-                                                                    intent.putExtra("createdBy",createdBy);
-                                                                    intent.putExtra("isAvailable",isAvailable);
+                                                                    intent.putExtra("username", userame);
+                                                                    intent.putExtra("incoming", incoming);
+                                                                    intent.putExtra("createdBy", createdBy);
+                                                                    intent.putExtra("isAvailable", isAvailable);
                                                                     startActivity(intent);
+                                                                    finish();
                                                                 }
                                                             }
                                                         }
